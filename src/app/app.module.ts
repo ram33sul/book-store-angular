@@ -17,6 +17,7 @@ import { loggedInGuard } from './guards/logged-in.guard';
 import { ButtonTwoComponent } from './components/general/button-two/button-two.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { SearchComponent } from './components/general/search/search.component';
+import { BookDetailsComponent } from './components/pages/book-details/book-details.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, canActivate: [authGuard] },
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
     HeadingComponent,
     HomeComponent,
     ButtonTwoComponent,
-    SearchComponent
+    SearchComponent,
+    BookDetailsComponent
   ],
   imports: [
     BrowserModule,
