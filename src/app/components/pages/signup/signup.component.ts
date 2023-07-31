@@ -16,8 +16,15 @@ export class SignupComponent {
     this.userService.signup({
       username: this.username,
       password: this.password
-    }).subscribe((response) => {
-      console.log(response)
+    }).subscribe({
+      next: (response) => {
+        this.userService.setUserData(response.data);
+        this.userService.setToken(response.token)
+        console.log(this.userService.userData, this.userService.token)
+      },
+      error: (error) => {
+        console.log(error.error)
+      }
     })
   }
 }

@@ -9,13 +9,28 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
+  userData: User | null = null;
+  token: string = '';
+
   constructor(private http: HttpClient) { }
 
-  signup(data: Omit<User, '_id'>): Observable< Omit<User, 'password'> > {
-    return this.http.post< Omit<User, 'password'> >(`${API_END_POINT}/user/signup`, data)
+  verifyUser(): Observable<{data: User, token: string}> {
+    return this.http.get<{data: User, token: string}>(`${API_END_POINT}/user/verifyUser`)
   }
 
-  login(data: Omit<User, '_id'>): Observable< Omit<User, 'password'> > {
-    return this.http.post< Omit<User, 'password'> >(`${API_END_POINT}/user/login`, data)
+  signup(data: {username: string, password: string }): Observable<{data: User, token: string}> {
+    return this.http.post<{data: User, token: string}>(`${API_END_POINT}/user/signup`, data);
+  }
+
+  login(data: {username: string, password: string }): Observable<{data: User, token: string}> {
+    return this.http.post<{data: User, token: string}>(`${API_END_POINT}/user/login`, data);
+  }
+
+  setUserData(data: User) {
+    this.userData = data;
+  }
+
+  setToken(token: string){
+    this.token = token;
   }
 }

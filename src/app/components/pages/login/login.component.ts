@@ -18,10 +18,12 @@ export class LoginComponent {
       username: this.username,
       password: this.password
     }).subscribe({
-      next: (res) => {
-        console.log(res)
+      next: (response) => {
+        this.userService.setUserData(response.data);
+        this.userService.setToken(response.token);
+        console.log(this.userService.userData, this.userService.token)
       },
-      error: (err) => {
+      error: (error) => {
         console.log('err')
       }
     })
