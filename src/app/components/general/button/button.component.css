@@ -1,0 +1,21 @@
+:host {
+    padding: 10px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-radius: 10px;
+    transition: opacity 0.2s;
+    cursor: pointer;
+}
+
+:host:hover {
+    opacity: 0.6;
+}
+
+:host:active {
+    opacity: 0.8;
+}

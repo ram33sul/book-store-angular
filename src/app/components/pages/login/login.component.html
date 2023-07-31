@@ -1,0 +1,6 @@
+<app-box-one>
+    <app-heading heading="Login" />
+    <app-input placeholder="Username" (onChange) = "username = $event" />
+    <app-input placeholder="Password" (onChange)="password = $event" type="password" />
+    <app-button (onClick)="handleSubmit()" > Submit </app-button>
+</app-box-one>
