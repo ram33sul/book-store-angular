@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule, } from '@angular/router'
 
@@ -11,10 +11,17 @@ import { InputComponent } from './components/general/input/input.component';
 import { ButtonComponent } from './components/general/button/button.component';
 import { BoxOneComponent } from './components/general/box-one/box-one.component';
 import { HeadingComponent } from './components/general/heading/heading.component';
+import { HomeComponent } from './components/pages/home/home.component';
+import { authGuard } from './guards/auth.guard';
+import { loggedInGuard } from './guards/logged-in.guard';
+import { ButtonTwoComponent } from './components/general/button-two/button-two.component';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+import { SearchComponent } from './components/general/search/search.component';
 
 const appRoutes: Routes = [
-  {path: 'login', component: LoginComponent },
-  {path: 'signup', component: SignupComponent}
+  {path: '', component: HomeComponent, canActivate: [authGuard] },
+  {path: 'login', component: LoginComponent, canActivate: [loggedInGuard] },
+  {path: 'signup', component: SignupComponent, canActivate: [loggedInGuard] },
 ]
 
 @NgModule({
@@ -25,7 +32,10 @@ const appRoutes: Routes = [
     InputComponent,
     ButtonComponent,
     BoxOneComponent,
-    HeadingComponent
+    HeadingComponent,
+    HomeComponent,
+    ButtonTwoComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +43,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
