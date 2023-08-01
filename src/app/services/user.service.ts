@@ -26,6 +26,11 @@ export class UserService {
     return this.http.post<{data: User, token: string}>(`${API_END_POINT}/user/login`, data);
   }
 
+  logout(){
+    this.userData = null;
+    this.token = '';
+  }
+
   setUserData(data: User) {
     this.userData = data;
   }

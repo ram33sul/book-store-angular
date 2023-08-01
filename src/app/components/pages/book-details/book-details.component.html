@@ -1,1 +1,78 @@
-<p>book-details works!</p>
+<app-loading *ngIf="loading" />
+<div *ngIf="data" class="content">
+    <div class="image" [ngStyle]="{'background-image': 'url('+data.image+')'}" ></div>
+    <div class="datas">
+        <div class="data">
+            <div class="field">
+                Title
+            </div>
+            <div class="value">
+                {{data.title}}
+            </div>
+        </div>
+        <div class="data">
+            <div class="field">
+                subtitle
+            </div>
+            <div class="value">
+                {{data.subtitle}}
+            </div>
+        </div>
+        <div class="data">
+            <div class="field">
+                authors
+            </div>
+            <div class="value">
+                {{data.authors}}
+            </div>
+        </div>
+        <div class="data">
+            <div class="field">
+                pages
+            </div>
+            <div class="value">
+                {{data.pages}}
+            </div>
+        </div>
+        <div class="data">
+            <div class="field">
+                publisher
+            </div>
+            <div class="value">
+                {{data.publisher}}
+            </div>
+        </div>
+        <div class="data">
+            <div class="field">
+                year
+            </div>
+            <div class="value">
+                {{data.year}}
+            </div>
+        </div>
+        <div class="data">
+            <div class="field">
+                ratin
+            </div>
+            <div class="value">
+                {{data.rating}}
+            </div>
+        </div>
+        <div class="data">
+            <div class="field">
+                price
+            </div>
+            <div class="value">
+                {{data.price}}
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="data" class="buttons-container">
+    <app-button-two (click) = "handleGoBack()" >
+        Go Back
+    </app-button-two>
+    <app-button (click)="handleAddToCart()" >
+        Add to Cart
+    </app-button>
+</div>

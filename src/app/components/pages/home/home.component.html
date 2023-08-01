@@ -1,1 +1,5 @@
 <app-search (onChange)="onSearch" ></app-search>
+<app-loading *ngIf="loading" />
+<div class="cards">
+    <app-card *ngFor="let book of booksList?.books" [book]="book"></app-card>
+</div>

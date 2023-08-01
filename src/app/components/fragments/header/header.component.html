@@ -1,0 +1,8 @@
+<div class="logo">
+    Book Store
+</div>
+<div *ngIf="userService.userData" class="nav-bar">
+    <div class="nav">Home</div>
+    <div class="nav">Cart</div>
+    <div class="nav" (click)="handleLogout()">Logout</div>
+</div>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { BooksList } from 'src/app/interfaces/book';
+import { finalize } from 'rxjs';
+import { Book, BooksList } from 'src/app/interfaces/book';
 import { BooksService } from 'src/app/services/books.service';
 
 @Component({
@@ -17,15 +18,16 @@ export class HomeComponent {
   constructor(private booksService: BooksService) {}
 
   ngOnInit(){
-    this.booksService.getBooksList().subscribe({
+    this.booksService.getBooksList().pipe(
+      finalize(() => {
+        this.loading = false
+      })
+    ).subscribe({
       next: (response: {data: BooksList}) => {
         this.booksList = response.data;
       },
       error: (error) => {
         alert(error.error)
-      },
-      complete: () => {
-        this.loading = false;
       }
     })
   }

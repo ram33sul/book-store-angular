@@ -18,11 +18,17 @@ import { ButtonTwoComponent } from './components/general/button-two/button-two.c
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { SearchComponent } from './components/general/search/search.component';
 import { BookDetailsComponent } from './components/pages/book-details/book-details.component';
+import { HeaderComponent } from './components/fragments/header/header.component';
+import { CardComponent } from './components/general/card/card.component';
+import { LoadingComponent } from './components/general/loading/loading.component';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, canActivate: [authGuard] },
   {path: 'login', component: LoginComponent, canActivate: [loggedInGuard] },
   {path: 'signup', component: SignupComponent, canActivate: [loggedInGuard] },
+  {path: 'book-details/:id', component: BookDetailsComponent},
+  {path: '**', component: HomeComponent, canActivate: [authGuard]}
 ]
 
 @NgModule({
@@ -37,15 +43,19 @@ const appRoutes: Routes = [
     HomeComponent,
     ButtonTwoComponent,
     SearchComponent,
-    BookDetailsComponent
+    BookDetailsComponent,
+    HeaderComponent,
+    CardComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    CommonModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}, CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
