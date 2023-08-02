@@ -1,0 +1,26 @@
+<div class="image" [ngStyle]="{'background-image': 'url('+book?.image+')'}" ></div>
+<div class="contents">
+    <div class="title">
+        {{book?.title}}
+    </div>
+    <div class="subtitle">
+        {{book?.subtitle}}
+    </div>
+    <div class="price">
+        {{book?.price}}
+    </div>
+    <div class="quantity-wrapper">
+        <div class="minus-button">
+            -
+        </div>
+        <div class="quantity">
+            {{product?.quantity}}
+        </div>
+        <div class="plus-button">
+            +
+        </div>
+    </div>
+    <app-button>
+        Remove
+    </app-button>
+</div>

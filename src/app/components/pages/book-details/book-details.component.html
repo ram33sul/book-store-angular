@@ -72,7 +72,10 @@
     <app-button-two (click) = "handleGoBack()" >
         Go Back
     </app-button-two>
-    <app-button (click)="handleAddToCart()" >
+    <app-button *ngIf="!isAlreadyInCart" [loading]="buttonLoading" (click)="handleAddToCart()" >
         Add to Cart
+    </app-button>
+    <app-button *ngIf="isAlreadyInCart" (click)="handleViewCart()" >
+        View Cart
     </app-button>
 </div>

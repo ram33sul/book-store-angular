@@ -6,10 +6,15 @@ import { Component, Output, EventEmitter, HostListener, Input } from '@angular/c
   styleUrls: ['./button.component.css']
 })
 export class ButtonComponent {
+
+  @Input() loading: boolean = false;
+
   @Output() onClick = new EventEmitter()
 
   @HostListener('click')
   click() {
-    this.onClick.emit()
+    if(!this.loading){
+      this.onClick.emit()
+    }
   }
 }

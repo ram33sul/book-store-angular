@@ -22,12 +22,15 @@ import { HeaderComponent } from './components/fragments/header/header.component'
 import { CardComponent } from './components/general/card/card.component';
 import { LoadingComponent } from './components/general/loading/loading.component';
 import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CartComponent } from './components/pages/cart/cart.component';
+import { CartCardComponent } from './components/general/cart-card/cart-card.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent, canActivate: [authGuard] },
   {path: 'login', component: LoginComponent, canActivate: [loggedInGuard] },
   {path: 'signup', component: SignupComponent, canActivate: [loggedInGuard] },
-  {path: 'book-details/:id', component: BookDetailsComponent},
+  {path: 'book-details/:id', component: BookDetailsComponent, canActivate: [authGuard]},
+  {path: 'cart', component: CartComponent, canActivate: [authGuard]},
   {path: '**', component: HomeComponent, canActivate: [authGuard]}
 ]
 
@@ -46,7 +49,9 @@ const appRoutes: Routes = [
     BookDetailsComponent,
     HeaderComponent,
     CardComponent,
-    LoadingComponent
+    LoadingComponent,
+    CartComponent,
+    CartCardComponent
   ],
   imports: [
     BrowserModule,
