@@ -19,6 +19,18 @@ export class CartComponent {
   ngOnInit(){
     this.cartService.getCart().subscribe((response) => {
       this.products = response.data;
+      this.loading = false;
+    })
+  }
+
+  onRemove(id: string){
+    this.cartService.removeFromCart(id).subscribe({
+      next: (response) => {
+        this.products = this.products.filter((product) => product.productId !== id)
+      },
+      error: (error) => {
+        alert(error.error)
+      }
     })
   }
 }

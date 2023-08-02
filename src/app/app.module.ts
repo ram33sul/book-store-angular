@@ -60,7 +60,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     CommonModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}, CurrencyPipe],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}, CurrencyPipe,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

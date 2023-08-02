@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TOKEN_NAME } from 'src/api_endpoints';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -22,6 +23,7 @@ export class LoginComponent {
       next: (response) => {
         this.userService.setUserData(response.data);
         this.userService.setToken(response.token);
+        localStorage.setItem(TOKEN_NAME, response.token);
         this.router.navigate([''])
       },
       error: (error) => {

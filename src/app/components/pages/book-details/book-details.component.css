@@ -7,6 +7,9 @@ app-loading {
     margin: auto;
     margin-top: 5vh;
     display: block;
+    padding: 20px;
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 10px;
 }
 
 

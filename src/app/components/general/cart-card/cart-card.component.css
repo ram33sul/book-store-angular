@@ -1,0 +1,89 @@
+:host {
+    width: 300px;
+    display: flex;
+    padding: 20px;
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 10px;
+    gap: 10px;
+    position: relative;
+}
+
+.image {
+    min-width: 100px;
+    height: 150px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.contents {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.title {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 13px;
+}
+
+.price {
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: auto;
+}
+
+.quantity-wrapper {
+    display: flex;
+    gap: 10px;
+    height: 30px;
+}
+
+.quantity-button {
+    width: 30px;
+    height: 100%;
+    background-color: gray;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.quantity {
+    height: 100%;
+    width: 30px;
+    font-weight: bold;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background-color: white;
+    animation: loading 1s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-color: rgb(245, 245, 245);
+    }
+    50% {
+        background-color: rgb(220, 220, 220);
+    }
+    100% {
+        background-color: rgb(245, 245, 245);
+    }
+}

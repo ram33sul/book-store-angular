@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http'
-import { API_END_POINT } from 'src/api_endpoints';
+import { API_END_POINT, TOKEN_NAME } from 'src/api_endpoints';
 import { User } from '../interfaces/user';
 import { Observable } from 'rxjs';
 
@@ -12,10 +12,27 @@ export class UserService {
   userData: User | null = null;
   token: string = '';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
 
-  verifyUser(): Observable<{data: User, token: string}> {
-    return this.http.get<{data: User, token: string}>(`${API_END_POINT}/user/verifyUser`)
+  }
+
+  verifyUser() {
+    return new Promise((resolve, reject) => {
+      this.token = localStorage.getItem(TOKEN_NAME) ?? '';
+      this.http.get<{data: User, token: string}>(`${API_END_POINT}/user/verify-user`, {
+        headers: {
+          Authorization: this.token
+        }
+      }).subscribe({
+        next: (response) => {
+          this.userData = response.data
+          resolve(true)
+        },
+        error: () => {
+          resolve(false)
+        }
+      })
+    })
   }
 
   signup(data: {username: string, password: string }): Observable<{data: User, token: string}> {
@@ -27,6 +44,7 @@ export class UserService {
   }
 
   logout(){
+    localStorage.removeItem(TOKEN_NAME);
     this.userData = null;
     this.token = '';
   }

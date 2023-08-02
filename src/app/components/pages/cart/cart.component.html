@@ -1,1 +1,5 @@
-<app-cart-card *ngFor="let product of products" [product]="product" ></app-cart-card>
+<app-cart-card *ngFor="let product of products" [product]="product" (onRemove)="onRemove(product.productId)" ></app-cart-card>
+<div *ngIf="products.length === 0" class="no-products-message">
+    No products in cart.
+</div>
+<app-loading *ngIf="loading"></app-loading>

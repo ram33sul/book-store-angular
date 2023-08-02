@@ -10,17 +10,20 @@
         {{book?.price}}
     </div>
     <div class="quantity-wrapper">
-        <div class="minus-button">
+        <div class="quantity-button" (click)="handleDecrement()">
             -
         </div>
         <div class="quantity">
-            {{product?.quantity}}
+            {{product.quantity}}
         </div>
-        <div class="plus-button">
+        <div class="quantity-button" (click)="handleIncrement()">
             +
         </div>
     </div>
-    <app-button>
+    <app-button (click) = "handleRemove()" >
         Remove
     </app-button>
+</div>
+<div *ngIf="loading" class="loading">
+
 </div>

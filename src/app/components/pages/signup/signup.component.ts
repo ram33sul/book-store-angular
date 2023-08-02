@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TOKEN_NAME } from 'src/api_endpoints';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -20,8 +21,9 @@ export class SignupComponent {
     }).subscribe({
       next: (response) => {
         this.userService.setUserData(response.data);
-        this.userService.setToken(response.token)
-        this.router.navigate([''])
+        this.userService.setToken(response.token);
+        localStorage.setItem(TOKEN_NAME, response.token);
+        this.router.navigate(['']);
       },
       error: (error) => {
         alert(error.error)
