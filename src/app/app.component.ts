@@ -10,11 +10,4 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AppComponent {
   title = 'book_store';
 
-  constructor (private userService: UserService, private router: Router) {}
-
-  ngOnInit() {
-    // this.userService.verifyUser().then(() => {
-    //   this.router.navigate([''])
-    // })
-  }
 }
