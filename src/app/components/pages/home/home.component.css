@@ -9,3 +9,8 @@
 app-loading {
     margin-top: 30vh;
 }
+.no-books {
+    margin: auto;
+    margin-top: 20vh;
+    width: fit-content;
+}

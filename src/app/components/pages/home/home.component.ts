@@ -12,8 +12,6 @@ export class HomeComponent {
 
   booksList: BooksList | null = null;
   loading: boolean = true;
-  searchList: BooksList | null = null;
-  searchLoading: boolean = false;
 
   constructor(private booksService: BooksService) {}
 
@@ -32,17 +30,18 @@ export class HomeComponent {
     })
   }
 
+
   onSearch(query: string) {
-    this.searchLoading = true
+    this.loading= true
     this.booksService.searchBooks(query).subscribe({
       next: (response: {data: BooksList}) => {
-        this.searchList = response.data;
+        this.booksList = response.data;
       },
       error: (error) => {
         alert(error.error)
       },
       complete: () => {
-        this.searchLoading = false;
+        this.loading = false;
       }
     })
   }

@@ -18,9 +18,10 @@ export class CardComponent {
     this.router.navigate([`book-details/${this.id}`])
   }
 
-  @Input() book: Partial<Book> | null = null;
+  @Input() book!: Partial<Book>;
 
   ngOnInit() {
     this.id = this.book?.isbn13 ?? '';
+    this.book.price = (parseFloat(this.book?.price?.replace('$','') ?? '') * 80).toString()
   }
 }

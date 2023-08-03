@@ -1,3 +1,4 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Book } from 'src/app/interfaces/book';
 import { Cart } from 'src/app/interfaces/cart';
@@ -20,6 +21,7 @@ export class CartCardComponent {
   constructor(
     private bookService: BooksService,
     private cartService: CartService,
+    private currencyPipe: CurrencyPipe,
   ) {}
 
   ngOnInit() {
@@ -27,6 +29,7 @@ export class CartCardComponent {
       next: (response) => {
         this.book = response.data;
         this.loading = false;
+        this.book.price = (parseFloat(this.book?.price?.replace('$','') ?? '') * 80).toString()
       },
       error: (error) => {
         alert(error.error)

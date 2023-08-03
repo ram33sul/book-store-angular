@@ -1,5 +1,8 @@
-<app-search (onChange)="onSearch" ></app-search>
+<app-search (onChange)="onSearch($event)" ></app-search>
 <app-loading *ngIf="loading" />
 <div class="cards">
     <app-card *ngFor="let book of booksList?.books" [book]="book"></app-card>
+</div>
+<div *ngIf="!booksList?.books?.length && !loading" class="no-books">
+    No books to show
 </div>

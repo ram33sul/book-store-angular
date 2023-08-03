@@ -20,6 +20,6 @@ export class BooksService {
   }
 
   searchBooks(query: string): Observable<{data: BooksList}> {
-    return this.http.get<{data: BooksList}>(`${API_END_POINT}/book/search-books/${query}`)
+    return this.http.get<{data: BooksList}>(`${API_END_POINT}/book/search-books?query=${query}`)
   }
 }

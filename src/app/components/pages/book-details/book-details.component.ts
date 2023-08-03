@@ -34,6 +34,7 @@ export class BookDetailsComponent {
       ).subscribe({
           next: (response) => {
           this.data = response.data;
+          this.data.price = (parseFloat(this.data.price?.replace('$','') ?? '') * 80).toString()
         },
         error: (error) => {
           alert(error.error)
